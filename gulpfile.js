@@ -14,59 +14,59 @@ gulp.task('copy-html', () => {
 
 gulp.task('build-js', () => {
   return gulp
-    .src('./src/js/main.js')
-    .pipe(
-      webpack({
-        mode: 'development',
-        output: {
-          filename: 'script.js',
-        },
-        watch: false,
-        devtool: 'source-map',
-        module: {
-          rules: [
-            {
-              test: /\.m?js$/,
-              exclude: /(node_modules|bower_components)/,
-              use: {
-                loader: 'babel-loader',
-                options: {
-                  presets: [
-                    [
-                      '@babel/preset-env',
-                      {
-                        debug: true,
-                        corejs: 3,
-                        useBuiltIns: 'usage',
-                      },
-                    ],
-                  ],
-                },
-              },
+      .src('./src/js/main.js')
+      .pipe(
+          webpack({
+            mode: 'development',
+            output: {
+              filename: 'script.js',
             },
-          ],
-        },
-      })
-    )
-    .pipe(gulp.dest(dist + '/js'))
-    .pipe(browsersync.stream());
+            watch: false,
+            devtool: 'source-map',
+            module: {
+              rules: [
+                {
+                  test: /\.m?js$/,
+                  exclude: /(node_modules|bower_components)/,
+                  use: {
+                    loader: 'babel-loader',
+                    options: {
+                      presets: [
+                        [
+                          '@babel/preset-env',
+                          {
+                            debug: true,
+                            corejs: 3,
+                            useBuiltIns: 'usage',
+                          },
+                        ],
+                      ],
+                    },
+                  },
+                },
+              ],
+            },
+          }),
+      )
+      .pipe(gulp.dest(dist + '/js'))
+      .pipe(browsersync.stream());
 });
 
 gulp.task('build-sass', () => {
   return gulp
-    .src('./src/scss/**/*.scss')
-    .pipe(sass().on('error', sass.logError))
-    .pipe(gulp.dest(dist + '/css'))
-    .pipe(browsersync.stream());
+      .src('./src/scss/**/*.scss')
+      .pipe(sass().on('error', sass.logError))
+      .pipe(gulp.dest(dist + '/css'))
+      .pipe(browsersync.stream());
 });
 
 gulp.task('copy-assets', () => {
   gulp.src('./src/icons/**/*.*').pipe(gulp.dest(dist + '/icons'));
 
   return gulp
-    .src('./src/img/**/*.*')
-    .pipe(gulp.dest(dist + '/img'))
-    .pipe(browsersync.stream());
+      .src('./src/img/**/*.*')
+      .pipe(gulp.dest(dist + '/img'))
+      .pipe(browsersync.stream());
 });
 
 gulp.task('watch', () => {
@@ -91,46 +91,46 @@ gulp.task('prod', () => {
   gulp.src('./src/icons/**/*.*').pipe(gulp.dest(dist + '/icons'));
 
   gulp
-    .src('./src/js/main.js')
-    .pipe(
-      webpack({
-        mode: 'production',
-        output: {
-          filename: 'script.js',
-        },
-        module: {
-          rules: [
-            {
-              test: /\.m?js$/,
-              exclude: /(node_modules|bower_components)/,
-              use: {
-                loader: 'babel-loader',
-                options: {
-                  presets: [
-                    [
-                      '@babel/preset-env',
-                      {
-                        debug: false,
-                        corejs: 3,
-                        useBuiltIns: 'usage',
-                      },
-                    ],
-                  ],
-                },
-              },
+      .src('./src/js/main.js')
+      .pipe(
+          webpack({
+            mode: 'production',
+            output: {
+              filename: 'script.js',
             },
-          ],
-        },
-      })
-    )
-    .pipe(gulp.dest(dist + '/js'));
+            module: {
+              rules: [
+                {
+                  test: /\.m?js$/,
+                  exclude: /(node_modules|bower_components)/,
+                  use: {
+                    loader: 'babel-loader',
+                    options: {
+                      presets: [
+                        [
+                          '@babel/preset-env',
+                          {
+                            debug: false,
+                            corejs: 3,
+                            useBuiltIns: 'usage',
+                          },
+                        ],
+                      ],
+                    },
+                  },
+                },
+              ],
+            },
+          }),
+      )
+      .pipe(gulp.dest(dist + '/js'));
 
   return gulp
-    .src('./src/scss/style.scss')
-    .pipe(sass().on('error', sass.logError))
-    .pipe(postcss([autoprefixer()]))
-    .pipe(cleanCSS())
-    .pipe(gulp.dest(dist + '/css'));
+      .src('./src/scss/style.scss')
+      .pipe(sass().on('error', sass.logError))
+      .pipe(postcss([autoprefixer()]))
+      .pipe(cleanCSS())
+      .pipe(gulp.dest(dist + '/css'));
 });
 
 gulp.task('default', gulp.parallel('watch', 'build'));
