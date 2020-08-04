@@ -1,43 +1,14 @@
 {
   "name": "food",
   "version": "1.0.0",
+  "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
-  "browserslist": [
-    "last 2 chrome versions",
-    "last 2 firefox versions",
-    "last 2 ios versions"
-  ],
   "devDependencies": {
-    "@babel/core": "^7.10.5",
-    "@babel/preset-env": "^7.10.4",
-    "autoprefixer": "^9.8.5",
-    "babel-loader": "^8.0.6",
-    "browser-sync": "^2.26.10",
-    "gulp": "^4.0.2",
-    "gulp-clean-css": "^4.2.0",
-    "gulp-postcss": "^8.0.0",
-    "gulp-sass": "^4.1.0",
-    "json-server": "^0.16.1",
-    "webpack": "^4.43.0",
-    "webpack-cli": "^3.3.12",
-    "webpack-stream": "^5.2.1"
-  },
-  "dependencies": {
-    "axios": "^0.19.2",
-    "core-js": "^3.6.5"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/ivan-pw/food-page.git"
-  },
-  "bugs": {
-    "url": "https://github.com/ivan-pw/food-page/issues"
-  },
-  "homepage": "https://github.com/ivan-pw/food-page#readme",
-  "description": ""
+    "json-server": "^0.16.1"
+  }
 }
